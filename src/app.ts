@@ -17,6 +17,7 @@ class App {
 
   private configureMiddleware(): void {
     this.app.use(express.json());
+    this.app.use(express.urlencoded({ extended: true }));
   }
 
   private configureRoutes(): void {

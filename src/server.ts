@@ -1,5 +1,9 @@
 import App from "./app";
+import { mongodb } from "./datasource/db";
 
 const app = new App();
 
-app.listen();
+(async () => {
+  await mongodb.connect();
+  app.listen();
+})();
