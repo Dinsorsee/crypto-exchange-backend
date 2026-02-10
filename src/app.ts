@@ -19,7 +19,11 @@ class App {
     this.app.use(express.json());
   }
 
-  private configureRoutes(): void {}
+  private configureRoutes(): void {
+    this.app.get("/", (req, res) => {
+      res.send("Hello World!");
+    });
+  }
 
   public listen(): void {
     this.server = this.app.listen(this.port, () => {
