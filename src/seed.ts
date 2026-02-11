@@ -7,7 +7,7 @@ import { TransactionService } from "./service/TransactionService";
 async function seed() {
   try {
     await mongodb.connect();
-    console.log("🌱 Starting seed data...");
+    console.log("Starting seed data...");
 
     const userService = new UserService();
     const walletService = new WalletService();
@@ -42,7 +42,6 @@ async function seed() {
       fiat: "THB",
       price: 1200000,
       amount: 2,
-      remainingAmount: 2,
       status: "OPEN",
     });
 
@@ -53,7 +52,6 @@ async function seed() {
       fiat: "USD",
       price: 45000,
       amount: 1,
-      remainingAmount: 1,
       status: "OPEN",
     });
 
