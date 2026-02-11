@@ -30,18 +30,8 @@ export class WalletRepository {
       .toArray();
   }
 
-  async updateBalance(
-    id: string | ObjectId,
-    newBalance: number,
-  ): Promise<WalletEntity | null> {
+  async findAll(): Promise<WalletEntity[]> {
     const db = await mongodb.getDatabase();
-    const _id = typeof id === "string" ? new ObjectId(id) : id;
-    await db
-      .collection<WalletEntity>(this.collectionName)
-      .updateOne(
-        { _id },
-        { $set: { balance: newBalance, updatedAt: new Date() } },
-      );
-    return this.findById(_id);
+    return db.collection<WalletEntity>(this.collectionName).find({}).toArray();
   }
 }

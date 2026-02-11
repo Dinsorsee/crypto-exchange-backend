@@ -38,4 +38,8 @@ export class WalletService {
   async getUserWallets(userId: string | ObjectId): Promise<WalletEntity[]> {
     return this.walletRepository.findByUserId(userId);
   }
+
+    async getAllOrders(): Promise<WalletEntity[]> {
+      return this.walletRepository.findAll();
+    }
 }

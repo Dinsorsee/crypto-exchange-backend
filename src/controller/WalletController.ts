@@ -66,4 +66,13 @@ export class WalletController {
       res.status(500).json({ error: error.message });
     }
   }
+
+    async getAll(req: Request, res: Response): Promise<void> {
+    try {
+      const orders = await this.walletService.getAllOrders();
+      res.json(orders);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  }
 }

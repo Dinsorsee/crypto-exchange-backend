@@ -7,6 +7,9 @@ const controller = new WalletController();
 // POST /api/wallets - Create wallet
 router.post("/", (req: Request, res: Response) => controller.create(req, res));
 
+// GET /api/wallets - Get all wallets
+router.get("/", (req: Request, res: Response) => controller.getAll(req, res));
+
 // GET /api/wallets/:id - Get wallet by ID
 router.get("/:id", (req: Request, res: Response) =>
   controller.getById(req, res),
