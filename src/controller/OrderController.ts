@@ -1,26 +1,20 @@
 import { Request, Response } from "express";
 import { OrderService } from "../service/OrderService";
 import { ObjectId } from "mongodb";
+import validateCreateOrder from "../utils/ValidateCreateOrder";
 
 export class OrderController {
   private orderService = new OrderService();
 
   async create(req: Request, res: Response): Promise<void> {
     try {
-      const { userId, orderType, crypto, fiat, price, amount } = req.body;
-      if (
-        !userId ||
-        !orderType ||
-        !crypto ||
-        !fiat ||
-        price === undefined ||
-        amount === undefined
-      ) {
-        res.status(400).json({
-          error: "userId, orderType, crypto, fiat, price, amount required",
-        });
+      const error = validateCreateOrder(req.body);
+      if (error) {
+        res.status(400).json({ error });
         return;
       }
+      const { userId, orderType, crypto, fiat, price, amount } = req.body;
+
       const order = await this.orderService.createOrder({
         userId: new ObjectId(userId),
         orderType,
