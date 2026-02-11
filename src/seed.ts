@@ -24,17 +24,14 @@ async function seed() {
     );
     console.log("✅ Users created:", user1.email, user2.email);
 
-    // Create wallets for user1 (Alice)
     const aliceTHB = await walletService.createFiatWallet(user1._id!, 1000000);
     const aliceBTC = await walletService.createCryptoWallet(user1._id!, 5);
 
-    // Create wallets for user2 (Bob)
     const bobTHB = await walletService.createFiatWallet(user2._id!, 50000);
     const bobBTC = await walletService.createCryptoWallet(user2._id!, 0);
 
     console.log("✅ Wallets created");
 
-    // Create sample BUY/SELL orders
     const sellOrder1 = await orderService.createOrder({
       userId: user1._id!,
       orderType: "SELL",
@@ -57,7 +54,6 @@ async function seed() {
 
     console.log("✅ Orders created");
 
-    // Create sample transactions (audit log)
     await transactionService.createTransaction({
       userId: user1._id!,
       type: "CRYPTO_TRANSFER",
