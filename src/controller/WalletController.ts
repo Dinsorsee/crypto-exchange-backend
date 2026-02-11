@@ -7,26 +7,21 @@ export class WalletController {
 
   async create(req: Request, res: Response): Promise<void> {
     try {
-      const { userId, type, currency, balance } = req.body;
+      const { userId, type, currency } = req.body;
       if (!userId || !currency) {
         res.status(400).json({ error: "userId, currency required" });
         return;
       }
-      if (type !== "CRYPTO" || type !== "FIAT") {
+      if (type === "CRYPTO" || type === "FIAT") {
+        const wallet =
+          type === "CRYPTO"
+            ? await this.walletService.createCryptoWallet(new ObjectId(userId))
+            : await this.walletService.createFiatWallet(new ObjectId(userId));
+        res.status(201).json(wallet);
+      } else {
         res.status(400).json({ error: "wrong type of wallet" });
         return;
       }
-      const wallet =
-        type === "CRYPTO"
-          ? await this.walletService.createCryptoWallet(
-              new ObjectId(userId),
-              balance || 0,
-            )
-          : await this.walletService.createFiatWallet(
-              new ObjectId(userId),
-              balance || 0,
-            );
-      res.status(201).json(wallet);
     } catch (error: any) {
       res.status(400).json({ error: error.message });
     }
