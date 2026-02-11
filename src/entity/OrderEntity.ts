@@ -11,7 +11,6 @@ export interface OrderEntity {
   fiat: string;
   price: number;
   amount: number;
-  remainingAmount: number;
   status: OrderStatus;
   createdAt?: Date;
   updatedAt?: Date;

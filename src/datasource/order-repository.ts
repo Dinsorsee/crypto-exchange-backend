@@ -30,21 +30,6 @@ export class OrderRepository {
       .toArray();
   }
 
-  async updateRemaining(
-    id: string | ObjectId,
-    remaining: number,
-    status?: string,
-  ): Promise<OrderEntity | null> {
-    const db = await mongodb.getDatabase();
-    const _id = typeof id === "string" ? new ObjectId(id) : id;
-    const patch: any = { remainingAmount: remaining, updatedAt: new Date() };
-    if (status) patch.status = status;
-    await db
-      .collection<OrderEntity>(this.collectionName)
-      .updateOne({ _id }, { $set: patch });
-    return this.findById(_id);
-  }
-
   async findAll(): Promise<OrderEntity[]> {
     const db = await mongodb.getDatabase();
     return db.collection<OrderEntity>(this.collectionName).find({}).toArray();
