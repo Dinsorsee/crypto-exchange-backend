@@ -1,0 +1,68 @@
+{
+  "info": {
+    "_postman_id": "50311716-3b7a-4fb9-b2f9-5c0617c5e04a",
+    "name": "orders",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "45970161",
+    "_collection_link": "https://go.postman.co/collection/45970161-50311716-3b7a-4fb9-b2f9-5c0617c5e04a?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "http://localhost:3000/api/orders/",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"userId\": \"698c273d6fb9cb7b2f85a9e0\",\n    \"orderType\": \"SELL\",\n    \"crypto\": \"BTC\",\n    \"fiat\": \"THB\",\n    \"price\": \"53000\",\n    \"amount\": \"1\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/orders/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "orders",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:3000/api/orders/",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/orders/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "orders",
+            ""
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
